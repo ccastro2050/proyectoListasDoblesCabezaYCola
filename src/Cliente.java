@@ -1,7 +1,7 @@
 /*
  * CLASE Cliente
  * -------------
- * Representa a un cliente y también funciona como NODO de la lista doble.
+ * Representa a un cliente y también funciona como nodo de la lista doble.
  *
  * Cada objeto Cliente tiene dos partes:
  *   1. Sus DATOS: código, nombre, edad y crédito.
@@ -16,8 +16,8 @@
  *   │ al previo│                          │ al próximo│
  *   └──────────┴──────────────────────────┴───────────┘
  *
- * Cuando "anterior"  es null -> este cliente es el primero (cabeza).
- * Cuando "siguiente" es null -> este cliente es el último  (cola).
+ * Cuando "anterior" es null → este cliente es el primero (cabeza).
+ * Cuando "siguiente" es null → este cliente es el último (cola).
  */
 public class Cliente {
 
@@ -39,7 +39,6 @@ public class Cliente {
      * Se llama al escribir: new Cliente("C001", "Ana", 30, 1500.50f)
      * Asigna los datos y deja los punteros en null porque el cliente
      * recién creado todavía no está enlazado a ningún vecino.
-     * Es la lista (ListaDoble.insertar) la que se encarga de enlazarlo.
      */
     public Cliente(String codigo, String nombre, int edad, float credito) {
         this.codigo    = codigo;
@@ -57,25 +56,20 @@ public class Cliente {
      * que convierte el objeto en texto. El problema es que la versión
      * que trae Java por defecto muestra algo así:
      *
-     *      Cliente@3a5b7c8d   <- dirección de memoria, inútil para nosotros
+     *      Cliente@3a5b7c8d   ← dirección de memoria, inútil para nosotros
      *
      * Con @Override le decimos a Java: "no uses tu versión, usa LA NUESTRA".
-     * Así, al hacer System.out.println(unCliente), Java llama a nuestro
-     * toString() y muestra algo legible como:
+     * Así cuando hacemos System.out.println(unCliente), Java llama a
+     * nuestro toString() y muestra algo legible como:
      *
-     *      [Codigo: C001 | Nombre: Ana López | Edad: 30 | Crédito: 1500.50]
+     *      [Cod: C001 | Nombre: Ana López | Edad: 30 | Crédito: 1500.5]
      *
-     * Esto se usa en mostrar() y mostrarInverso() de ListaDoble con
-     * System.out.println("  v  " + aux): Java ve que "aux" es un objeto
-     * y llama a su toString() automáticamente para poder concatenarlo.
+     * Esto se usa en el método mostrar() de ListaDoble con: System.out.println(aux)
+     * Java detecta que "aux" es un objeto y llama a toString() automáticamente.
      */
     @Override
     public String toString() {
-        // %-6s  -> texto alineado a la izquierda en 6 espacios
-        // %-15s -> texto alineado a la izquierda en 15 espacios
-        // %3d   -> entero alineado a la derecha en 3 espacios
-        // %.2f  -> decimal con exactamente 2 cifras decimales
-        return String.format("[Codigo: %-6s | Nombre: %-15s | Edad: %3d | Crédito: %.2f]",
-                codigo, nombre, edad, credito);
+        return "[Cod: " + codigo + " | Nombre: " + nombre
+             + " | Edad: " + edad + " | Crédito: " + credito + "]";
     }
 }
